@@ -28,7 +28,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     // MARK: Custom Method
     func initializePlayer() {
         
-        guard let soundAsset: NSDataAsset = NSDataAsset(name: "sound") else {
+        guard let soundAsset = NSDataAsset(name: "sound") else {
             print("음원 파일 에셋을 가져올 수 없습니다")
             return
         }
@@ -48,12 +48,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func updateTimeLabelText(time: TimeInterval) {
-        let minute: Int = Int(time / 60)
-        let second: Int = Int(time.truncatingRemainder(dividingBy: 60))
-        let milisecond: Int = Int(time.truncatingRemainder(dividingBy: 1) * 100)
+        let minute = Int(time / 60)
+        let second = Int(time.truncatingRemainder(dividingBy: 60))
+        let milisecond = Int(time.truncatingRemainder(dividingBy: 1) * 100)
         
-        let timeText: String = String(format: "%02ld:%02ld:%02ld", minute, second, milisecond)
-        
+        let timeText = String(format: "%02ld:%02ld:%02ld", minute, second, milisecond)
         self.timeLabel.text = timeText
     }
     
@@ -72,7 +71,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         self.timer.invalidate()
         self.timer = nil
     }
-
+    
     // MARK: @IBActions
     @IBAction func touchUpPlayPauseButton(_ sender: UIButton) {
         
@@ -100,17 +99,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     // MARK: AVAudioPlayerDelegate
     func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         
-        guard let error: Error = error else {
+        guard let error = error else {
             print("오디오 플레이어 디코드 오류발생")
             return
         }
         
         let message = "오디오 플레이어 오류 발생 \(error.localizedDescription)"
         
-        let alert: UIAlertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         
-        let okAction: UIAlertAction = UIAlertAction(title: "확인", style: .default) { (action: UIAlertAction) -> Void in
-            
+        let okAction = UIAlertAction(title: "확인", style: .default) { (action: UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: nil)
         }
         
@@ -134,7 +132,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     func addPlayPauseButton() {
         
-        let button: UIButton = UIButton(type: .custom)
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(button)
@@ -145,20 +143,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         button.addTarget(self, action: #selector(self.touchUpPlayPauseButton(_:)), for: .touchUpInside)
         
         let centerX = button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let centerY = button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         
-        let centerY = NSLayoutConstraint(item: button,
-                                         attribute: .centerY,
-                                         relatedBy: .equal,
-                                         toItem: self.view,
-                                         attribute: .centerY,
-                                         multiplier: 0.8,
-                                         constant: 0)
-        
-        let width: NSLayoutConstraint
-        width = button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5)
-        
-        let ratio: NSLayoutConstraint
-        ratio = button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 1)
+        let width = button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5)
+        let ratio = button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 1)
         
         centerX.isActive = true
         centerY.isActive = true
@@ -169,7 +157,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func addTimeLabel() {
-        let timeLabel: UILabel = UILabel()
+        let timeLabel = UILabel()
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(timeLabel)
@@ -178,11 +166,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         timeLabel.textAlignment = NSTextAlignment.center
         timeLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         
-        let centerX: NSLayoutConstraint
-        centerX = timeLabel.centerXAnchor.constraint(equalTo: self.playPauseButton.centerXAnchor)
+        let centerX = timeLabel.centerXAnchor.constraint(equalTo: self.playPauseButton.centerXAnchor)
         
-        let top: NSLayoutConstraint
-        top = timeLabel.topAnchor.constraint(equalTo: self.playPauseButton.bottomAnchor, constant: 8)
+        let top = timeLabel.topAnchor.constraint(equalTo: self.playPauseButton.bottomAnchor, constant: 8)
         
         centerX.isActive = true
         top.isActive = true
@@ -192,28 +178,17 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func addProgressSlider() {
-        let slider: UISlider = UISlider()
+        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
-        
         self.view.addSubview(slider)
-        
         slider.minimumTrackTintColor = UIColor.red
-        
         slider.addTarget(self, action: #selector(self.sliderValueChanged(_:)), for: .valueChanged)
         
-        let safeAreaGuide: UILayoutGuide = self.view.safeAreaLayoutGuide
-        
-        let centerX: NSLayoutConstraint
-        centerX = slider.centerXAnchor.constraint(equalTo: self.timeLabel.centerXAnchor)
-        
-        let top: NSLayoutConstraint
-        top = slider.topAnchor.constraint(equalTo: self.timeLabel.bottomAnchor, constant: 8)
-        
-        let leading: NSLayoutConstraint
-        leading = slider.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16)
-        
-        let trailing: NSLayoutConstraint
-        trailing = slider.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16)
+        let safeAreaGuide = self.view.safeAreaLayoutGuide
+        let centerX = slider.centerXAnchor.constraint(equalTo: self.timeLabel.centerXAnchor)
+        let top = slider.topAnchor.constraint(equalTo: self.timeLabel.bottomAnchor, constant: 8)
+        let leading = slider.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16)
+        let trailing = slider.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor, constant: -16)
         
         centerX.isActive = true
         top.isActive = true
@@ -223,4 +198,3 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         self.progressSlider = slider
     }
 }
-
