@@ -33,12 +33,12 @@ class ViewController: UIViewController {
         do {
             try self.player = AVAudioPlayer(data: soundAsset.data)
             self.player.delegate = self
+            playPauseButton.addTarget(self, action: #selector(playPause(_:)), for: .touchUpInside)
         } catch let error as NSError {
             print("플레이어 초기화 실패")
             print("코드 : \(error.code), 메세지 : \(error.localizedDescription)")
         }
         
-        playPauseButton.addTarget(self, action: #selector(playPause(_:)), for: .touchUpInside)
         progressSlider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .touchUpInside)
         progressSlider.maximumValue = Float(self.player.duration)
         progressSlider.minimumValue = 0
