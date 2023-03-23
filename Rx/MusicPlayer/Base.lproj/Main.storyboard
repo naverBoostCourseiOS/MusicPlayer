@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MusicPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhE-uX-vap">
+                                <rect key="frame" x="102" y="344" width="189" height="189"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NhE-uX-vap" secondAttribute="height" multiplier="1:1" id="QeP-nO-yjd"/>
+                                </constraints>
+                                <state key="normal" image="button_play"/>
+                                <state key="selected" image="button_pause"/>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gjZ-qO-VQb">
+                                <rect key="frame" x="14" y="570" width="365" height="31"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiP-r0-LML">
+                                <rect key="frame" x="158.66666666666666" y="541" width="76" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gjZ-qO-VQb" secondAttribute="trailing" constant="16" id="4al-qk-Lw9"/>
+                            <constraint firstItem="DiP-r0-LML" firstAttribute="centerX" secondItem="NhE-uX-vap" secondAttribute="centerX" id="61g-kA-DVc"/>
+                            <constraint firstItem="gjZ-qO-VQb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7fH-Tk-keT"/>
+                            <constraint firstItem="NhE-uX-vap" firstAttribute="width" secondItem="NhE-uX-vap" secondAttribute="height" multiplier="1:1" id="Pqx-it-QZQ"/>
+                            <constraint firstItem="NhE-uX-vap" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="SOc-kq-OP8"/>
+                            <constraint firstItem="DiP-r0-LML" firstAttribute="top" secondItem="NhE-uX-vap" secondAttribute="bottom" constant="8" id="at4-E8-DVE"/>
+                            <constraint firstItem="gjZ-qO-VQb" firstAttribute="top" secondItem="DiP-r0-LML" secondAttribute="bottom" constant="8" id="bIu-t2-1E1"/>
+                            <constraint firstItem="gjZ-qO-VQb" firstAttribute="centerX" secondItem="DiP-r0-LML" secondAttribute="centerX" id="gQX-vv-PWp"/>
+                            <constraint firstItem="NhE-uX-vap" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wk4-cS-e1q"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playPauseButton" destination="NhE-uX-vap" id="5Sc-Ed-QbS"/>
+                        <outlet property="progressSlider" destination="gjZ-qO-VQb" id="boI-VG-TVT"/>
+                        <outlet property="timeLabel" destination="DiP-r0-LML" id="QmL-nX-ats"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="21" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="button_pause" width="185" height="185"/>
+        <image name="button_play" width="187" height="189"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
